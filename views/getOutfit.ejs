@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Today's Outfit - What Should I Wear?</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+       
+        
+        <h1>Today's Outfit for <%= city %></h1>
+        <p class="date"><%= today %></p>
+        
+        <!-- Weather Card -->
+        <div class="weather-card">
+            <div class="weather-header">
+                <div class="weather-icon">
+                    <img src="<%= weather.icon %>" alt="<%= weather.condition %>">
+                </div>
+                <div class="weather-info">
+                    <h2><%= weather.condition %></h2>
+                    <p class="description"><%= weather.description %></p>
+                </div>
+                <div class="weather-temp">
+                    <h3><%= weather.temp %>°F</h3>
+                    <p>Feels like <%= weather.feels_like %>°F</p>
+                </div>
+            </div>
+            
+            <div class="weather-details">
+                <div class="detail">
+                    <span class="label">💧 Humidity</span>
+                    <span class="value"><%= weather.humidity %>%</span>
+                </div>
+                <div class="detail">
+                    <span class="label">💨 Wind</span>
+                    <span class="value"><%= weather.wind_speed %> mph</span>
+                </div>
+                <div class="detail">
+                    <span class="label">📍 Location</span>
+                    <span class="value"><%= weather.city %>, <%= weather.country %></span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Outfit Advice -->
+        <div class="outfit-card">
+            <h2>👕 Recommended Outfit</h2>
+            <p>Based on today's weather conditions:</p>
+            
+            <div class="outfit-list">
+                <% outfit.forEach((item, index) => { %>
+                <div class="outfit-item">
+                    <div class="item-number"><%= index + 1 %></div>
+                    <div class="item-text"><%= item %></div>
+                </div>
+                <% }) %>
+            </div>
+            
+            <div class="back-action">
+                <a href="/" class="btn-primary">← Check Another City</a>
+            </div>
+            <!--<div class="outfit-actions">
+                <button onclick="printPage()" class="btn-secondary">🖨️ Print This List</button>
+                <button onclick="shareOutfit()" class="btn-secondary">📤 Share</button>
+                <a href="/saved" class="btn-secondary">💾 View Saved</a> 
+            </div>-->
+        </div>
+    </div>
+</body>
+</html>

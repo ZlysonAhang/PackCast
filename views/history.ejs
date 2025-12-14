@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search History - PackCast</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="history-container">
+        <!-- Back Button -->
+        <div class="text-center mb-20">
+            <a href="/" class="btn-back">← Back to Search</a>
+        </div>
+        
+        <!-- Header -->
+        <div class="history-header">
+            <h1>📋 Search History</h1>
+        </div>
+        
+        <!-- Stats -->
+        <div class="history-stats">
+            <h2><%= totalSearches %> total searches</h2>
+            <p><%= cities.length %> different cities</p>
+        </div>
+        
+        <!-- Cities List -->
+        <% if (cities.length === 0) { %>
+            <div class="empty-history">
+                <div class="empty-icon">🏙️</div>
+                <h2 class="empty-message">No search history yet</h2>
+                <p>Search for a city to see it appear here!</p>
+                <a href="/" class="btn-primary mt-20">Search Your First City</a>
+            </div>
+        <% } else { %>
+            <div class="cities-list">
+                <% cities.forEach(city => { %>
+                <div class="city-item">
+                    <div class="city-info">
+                        <h3 class="city-name"><%= city.name %></h3>
+                        <p class="city-stats">Last searched: <%= new Date(city.lastSearched).toLocaleDateString() %></p>
+                    </div>
+                    <div class="city-count">
+                        <%= city.count %> time<%= city.count > 1 ? 's' : '' %>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+            
+            <!-- Delete Button -->
+            <div class="history-actions">
+                <button onclick="deleteAllHistory()" class="btn-delete">🗑️ Delete All History</button>
+            </div>
+        <% } %>
+    </div>
+    
+    <script>
+        function deleteAllHistory() {
+            if (confirm('Delete ALL search history? This cannot be undone.')) {
+                fetch('/delete-all-history', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('✓ ' + data.message);
+                        window.location.reload();
+                    } else {
+                        alert('✗ Error: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    alert('✗ Error deleting history');
+                });
+            }
+        }
+    </script>
+</body>
+</html>

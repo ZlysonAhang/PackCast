@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>What Should I Wear Today?</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+
+  <body>
+    <h1>PackCast: 👕 What Should I Wear Today?</h1>
+    <div class="form-container">
+      <form action="/getOutfit" method="POST">
+        <div class="form-group">
+          <label for="city">📍 Your City</label>
+          <input
+            type="text"
+            id="city"
+            name="city"
+            placeholder="e.g., New York, Tokyo"
+            required
+          />
+        </div>
+
+        <input type="hidden" name="date" value="<%= todayDate %>" />
+
+        <button type="submit" class="btn-primary">
+          🌤️ Get Today's Outfit Advice
+        </button>
+      </form>
+    <br>
+    <a href="/history">📅 View History </a>
+
+    </div>
+  </body>
+</html>
