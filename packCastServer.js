@@ -141,7 +141,7 @@ function getOutfitForToday(weather) {
 
     if (wind > 15) {
         outfit.push("💨 Windy conditions: Windbreaker");
-        outfit.push("Secure loose clothing and accessories");
+        outfit.push(" Secure loose clothing and accessories");
     }
     
     if (weather.humidity > 70) {
