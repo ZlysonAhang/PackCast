@@ -1,21 +1,24 @@
-html {
-  font-family: "Inter", sans-serif;
+html{
   box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  font-size: 45pt;
 }
 
 body {
-  background-color: #cbe1f4;
+  background-color: #9fd2ff;
   color: #333;
   font-size: 16px;
   margin: 0;
   padding: 0;
   line-height: 1.6;
 }
+
 .form-container {
   background-color: white;
   border-radius: 10px;
+  align-items: center;
   padding: 30px;
-  width: 500px;
+  width: 600px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin: 30px auto;
 }
@@ -23,32 +26,48 @@ body {
 .form-group {
   margin-bottom: 20px;
 }
-
-/*Get Outfit Page Styles*/
-.results-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+.form-group label {
+  margin-bottom: 8px;
+  font-size: 20px;
+  margin-right: 1em;
 }
 
-.weather-card,
-.outfit-card {
+input[type="text"] {
+  width: 50%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* ========== getOutfit PAGE STYLES ========== */
+.weather-container,
+.outfit-container {
   background-color: white;
   border-radius: 10px;
   padding: 25px;
   margin-bottom: 20px;
   margin: auto;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 500px;
+  width: 800px;
 }
 
-.weather-card {
-  background: linear-gradient(135deg, #f8ca85 0%, #ffa144 100%);
+.weather-container {
+  background: linear-gradient(135deg, #ff7024 0%, #ff8850 100%);
   color: white;
 }
 
+.weather-summary {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-top: 16px;
+}
+
+
 .date {
-  color: rgba(255, 255, 255, 0.8);
+  color: white;
+  font-style: italic;
   margin-bottom: 20px;
 }
 
@@ -63,16 +82,10 @@ body {
   margin: 0;
 }
 
-.weather-icon {
-  width: 64px;
-  height: 64px;
-  background-color: white;
-  border-radius: 50%;
-  padding: 10px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.weather-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .weather-stats {
@@ -81,27 +94,18 @@ body {
   gap: 15px;
 }
 
-.stat {
-  background-color: rgba(255, 255, 255, 0.2);
-  padding: 10px;
-  border-radius: 8px;
-  text-align: center;
+.weather-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.stat .label {
-  display: block;
-  font-size: 0.9em;
-  opacity: 0.9;
+.weather-info h2,
+.weather-temp h2 {
+  margin: 0;
+  line-height: 1.2;
 }
 
-.stat .value {
-  display: block;
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-top: 5px;
-}
-
-/* Outfit List */
 .outfit-list {
   margin: 20px 0;
 }
@@ -112,11 +116,11 @@ body {
   padding: 12px;
   margin: 8px 0;
   background-color: #f8f9fa;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #ff7024;
   border-radius: 5px;
 }
 
-.outfit-item .emoji {
+.outfit-item .icon {
   font-size: 1.5em;
   margin-right: 15px;
   width: 40px;
@@ -127,31 +131,23 @@ body {
   font-size: 1.1em;
 }
 
-.no-advice {
-  text-align: center;
-  color: #666;
-  font-style: italic;
-  padding: 20px;
-}
-
-.back-action {
+.home-btn {
   margin-top: 30px;
   text-align: center;
 }
 
 .btn-primary {
-  display: inline-block;
   padding: 12px 20px;
-  background-color: #4f46e5; /* indigo */
+  background-color: #7949ff; 
   color: white;
-  text-decoration: none;
   border-radius: 8px;
+  font-size: 16px;
   font-weight: 600;
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .btn-primary:hover {
-  background-color: #4338ca;
+  background-color: #9f82f0;
   transform: translateY(-1px);
 }
 
@@ -167,19 +163,8 @@ body {
   padding: 20px;
 }
 
-.history-header {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #333;
-}
-
-.history-header h1 {
-  margin-bottom: 10px;
-  font-size: 2em;
-}
-
 .history-stats {
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #ff7024 0%, #ff8850 100%);
   color: white;
   padding: 20px;
   border-radius: 10px;
@@ -187,18 +172,7 @@ body {
   text-align: center;
 }
 
-.history-stats h2 {
-  margin: 0 0 10px 0;
-  font-size: 1.5em;
-}
-
-.history-stats p {
-  margin: 0;
-  opacity: 0.9;
-  font-size: 1.1em;
-}
-
-.cities-list {
+.list {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -239,8 +213,8 @@ body {
   margin: 0;
 }
 
-.city-count {
-  background-color: #4f46e5;
+.count {
+  background-color: #ff7024;
   color: white;
   padding: 5px 12px;
   border-radius: 20px;
@@ -266,8 +240,8 @@ body {
 
 .empty-message {
   color: #666;
-  font-size: 1.1em;
-  margin-bottom: 20px;
+  font-size: 16px;
+  margin-bottom: 40px;
 }
 
 .history-actions {
@@ -293,81 +267,4 @@ body {
   background-color: #c82333;
 }
 
-.btn-back {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: #6c757d;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 16px;
-  transition: background-color 0.2s ease;
-}
 
-.btn-back:hover {
-  background-color: #5a6268;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .form-container,
-  .weather-card,
-  .outfit-card {
-    width: 90%;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .history-container {
-    width: 90%;
-    padding: 15px;
-  }
-  
-  .weather-details {
-    flex-direction: column;
-    text-align: center;
-    gap: 15px;
-  }
-  
-  .weather-stats {
-    width: 100%;
-  }
-  
-  .city-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  
-  .city-count {
-    align-self: flex-start;
-  }
-  
-  .history-actions {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .btn-delete,
-  .btn-back {
-    width: 100%;
-    max-width: 300px;
-    text-align: center;
-  }
-}
-
-
-/* Common utility classes */
-.text-center {
-  text-align: center;
-}
-
-.mt-20 {
-  margin-top: 20px;
-}
-
-.mb-20 {
-  margin-bottom: 20px;
-}
