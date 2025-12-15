@@ -3,7 +3,7 @@
 
 **App Description:** PackCast is a weather-based outfit recommendation app that provides users ideas on what to wear based on current weather conditions in any city worldwide.
 
-**YouTube Video Demo Link:** [CMSC335: PackCast Demo](https://youtu.be/SiXzA6OSjnc)]
+**YouTube Video Demo Link:** [CMSC335: PackCast Demo](https://youtu.be/SiXzA6OSjnc)
 
 **APIs Information:** [OpenWeatherMap API](https://openweathermap.org/api)
 
