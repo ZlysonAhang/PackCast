@@ -20,7 +20,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Connect to MongoDB using Mongoose
 mongoose.connect(process.env.MONGO_CONNECTION_STRING)
-.then(() => console.log('✅ Connected to MongoDB with Mongoose'))
+.then(() => console.log('✅ MongoDB connected successfully'))
 .catch(err => {
     console.error('❌ MongoDB connection error:', err);
     process.exit(1);
@@ -51,10 +51,8 @@ const suggestionSchema = new mongoose.Schema({
     }
 });
 
-// Create Mongoose Model
 const Suggestion = mongoose.model('Suggestion', suggestionSchema);
 
-// API function to get weather data
 async function getOpenWeatherData(city) {
     const API_KEY = process.env.WEATHER_API_KEY;
     
@@ -96,14 +94,12 @@ async function getOpenWeatherData(city) {
     }
 }
 
-// Outfit generation function
 function getOutfitForToday(weather) {
     const outfit = [];
     const condition = weather.condition.toLowerCase();
     const temp = weather.temp;
     const wind = weather.wind_speed;
     
-    // Temperature-based recommendations
     if (temp < 40) {
         outfit.push("🧥 Heavy winter coat + Sweater");
         outfit.push("🧣 & 🧤 Scarf + gloves");
@@ -123,37 +119,31 @@ function getOutfitForToday(weather) {
         outfit.push("🥿 Sandals, heels, or breathable shoes");
     }
     
-    // Extreme heat warning
     if (temp > 85) {
         outfit.push("💧 Extreme heat: Stay hydrated!");
         outfit.push("Avoid strenuous outdoor activities during peak sun hours.");
     }
 
-    // Sun protection
     if (temp > 70 && (condition.includes('clear') || condition.includes('sun'))) {
         outfit.push("🕶 Sunglasses");
         outfit.push("🧴 Sunscreen SPF 30+");
         outfit.push("🧢 Hat");
     }
     
-    // Rain protection
     if (condition.includes('rain') || condition.includes('drizzle')) {
         outfit.push("🌂 Umbrella or raincoat");
         outfit.push("👢 Rain Boots");
     }
     
-    // Cloudy weather
     if (condition.includes('cloud')) {
         outfit.push("☁️ Light layers for variable weather");
     }
 
-    // Windy conditions
     if (wind > 15) {
         outfit.push("💨 Windy conditions: Windbreaker");
         outfit.push("Secure loose clothing and accessories");
     }
     
-    // High humidity
     if (weather.humidity > 70) {
         outfit.push("💦 High humidity: Choose breathable fabrics");
     }
@@ -161,16 +151,13 @@ function getOutfitForToday(weather) {
     return outfit;
 }
 
-// Routes
 app.use('/', suggestionsRouter(Suggestion, getOpenWeatherData, getOutfitForToday));
 
-// Start server
 app.listen(portNumber, () => {
     console.log(`✅ Server running at http://localhost:${portNumber}`);
     console.log(`Press Ctrl+C to stop the server`);
 });
 
-// Export for testing
 module.exports = {
     app,
     Suggestion,

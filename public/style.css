@@ -244,23 +244,16 @@ input[type="text"] {
   margin-bottom: 40px;
 }
 
-.history-actions {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
-}
 
 .btn-delete {
+  padding: 11px 20px;
   background-color: #dc3545;
   color: white;
-  padding: 12px 24px;
-  border: none;
   border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
   font-size: 16px;
-  transition: background-color 0.2s ease;
+  font-weight: 600;
+  border: none;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .btn-delete:hover {

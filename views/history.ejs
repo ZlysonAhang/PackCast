@@ -42,14 +42,14 @@
             
             <div class="home-btn">
                 <a href="/" class="btn-primary">← Back to Search</a>
-                <button onclick="deleteAllHistory()" class="btn-delete">🗑️ Delete All History</button>
+                <button onclick="deleteHistory()" class="btn-delete">🗑️ Delete All History</button>
     
             </div>
         <% } %>
     </div>
     
     <script>
-        function deleteAllHistory() {
+        function deleteHistory() {
             if (confirm('Delete ALL search history? This cannot be undone.')) {
                 fetch('/delete-all', {
                     method: 'POST',
@@ -60,14 +60,14 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        alert('✓ ' + data.message);
+                        alert('✅ SUCCESS: ' + data.message);
                         window.location.reload();
                     } else {
-                        alert('✗ Error: ' + data.message);
+                        alert('Error: ' + data.message);
                     }
                 })
                 .catch(error => {
-                    alert('✗ Error deleting history');
+                    alert('Error deleting history');
                 });
             }
         }
